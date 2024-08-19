@@ -12,13 +12,15 @@ router.get('/:id', async (req, res) => {
 
     const user = jwt.verify(token, process.env.JWT_SECRET) // extract user info
 
-    // Remove the verification id
-    const client = await pool.connect(undefined) // Get a client from the pool
-    const result = await client.query('UPDATE users SET token = NULL WHERE id = $1 AND token = $2 RETURNING id', [user.id, verId])
-    client.release() // Release the client back to the pool
+    try {
+        // Remove the verification id
+        const client = await pool.connect(undefined) // Get a client from the pool
+        const result = await client.query('UPDATE users SET token = NULL WHERE id = $1 AND token = $2 RETURNING id', [user.id, verId])
+        client.release() // Release the client back to the pool
 
-    // If no user with the given verification id is found, return an error to the client
-    if (result.rows.length > 0) {
+        // If no user with the given verification id is found, return an error to the client
+        if (result.rows.length === 0) return res.status(400).send('The verification link appears to be invalid')
+
         // Create the json web token
         const newToken = jwt.sign({
             id: user.id,
@@ -26,7 +28,9 @@ router.get('/:id', async (req, res) => {
         }, process.env.JWT_SECRET)
 
         res.send(newToken)
-    } else res.status(400).send('The verification link appears to be invalid')
+    } catch (err) {
+        res.status(500).send('Failed to communicate with the database')
+    }
 })
 
 module.exports = router
