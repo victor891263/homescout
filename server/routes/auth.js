@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
         // Create the json web token
         const token = jwt.sign({
             id: user.id,
-            verified: !result.rows[0].token // If verification id still exists, that means the user is unverified
+            verified: !result.rows[0].ver_id // If verification id still exists, that means the user is unverified
         }, process.env.JWT_SECRET)
 
         // Send the json web token to the client

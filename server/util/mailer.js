@@ -17,12 +17,12 @@ async function sendVerificationEmail(address, verId) {
     })
 }
 
-async function sendPasswordResetEmail(address, verId) {
+async function sendPasswordResetEmail(address, resetId) {
     await transporter.sendMail({
         from: 'autoreply978@gmail.com',
         to: address,
         subject: '[Homescout] Recover your password',
-        text: `To reset your password, visit this link: ${process.env.CLIENT_URL}/reset/${verId}`
+        text: `To reset your password, visit this link: ${process.env.CLIENT_URL}/reset/${resetId}`
     })
 }
 

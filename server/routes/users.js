@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
     try {
         // Add user to database
         const client = await pool.connect(undefined) // Get a client from the pool
-        const result = await client.query('INSERT INTO users (email, password, token) VALUES ($1, $2, $3) RETURNING id', [user.email, hashed, verId])
+        const result = await client.query('INSERT INTO users (email, password, ver_id) VALUES ($1, $2, $3) RETURNING id', [user.email, hashed, verId])
         const userId = result.rows[0].id
         client.release() // Release the client back to the pool
 

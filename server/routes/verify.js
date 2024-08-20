@@ -15,7 +15,7 @@ router.get('/:id', async (req, res) => {
     try {
         // Remove the verification id
         const client = await pool.connect(undefined) // Get a client from the pool
-        const result = await client.query('UPDATE users SET token = NULL WHERE id = $1 AND token = $2 RETURNING id', [user.id, verId])
+        const result = await client.query('UPDATE users SET ver_id = NULL WHERE id = $1 AND ver_id = $2 RETURNING id', [user.id, verId])
         client.release() // Release the client back to the pool
 
         // If no user with the given verification id is found, return an error to the client

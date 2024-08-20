@@ -17,8 +17,8 @@ module.exports = async (req, res, next) => {
             // Only proceed if the user with the provided id exists in the database
             if (result.rows.length > 0) {
                 // Check if user still has unresolved email verification id. If they don't, pass the user to the next
-                const token = result.rows[0].token
-                if (token) res.status(400).send('Verify your email first')
+                const ver_id = result.rows[0].ver_id
+                if (ver_id) res.status(400).send('Verify your email first')
                 else req.user = user
             }
         } catch (err) {
