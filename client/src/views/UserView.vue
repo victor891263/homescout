@@ -1,26 +1,54 @@
 <template>
-    <div class="home-view main">
-        <PropertyMini
-            v-for="p in properties"
-            :key="p.id"
-            :mini="true"
-            :id="p.id"
-            :date_posted="p.date_posted"
-            :price="p.price"
-            :address="p.address"
-            :bathrooms="p.bathrooms"
-            :bedrooms="p.bedrooms"
-            :floors="p.floors"
-            :type="p.type"
-            :tenure="p.tenure"
-            :description="p.description"
-        />
+    <div class="user-view main">
+        <div>
+            <UserIcon />
+        </div>
+        <div>
+            <h2>{{ user.name }}</h2>
+            <div class="contact">
+                <div>✉️ {{ user.email }}</div>
+                <div>📞 {{ user.phone }}</div>
+                <div>🏠 {{ user.address }}</div>
+            </div>
+            <p>{{ user.about }}</p>
+        </div>
+        <div>
+            <PropertyMini
+                v-for="p in properties"
+                :key="p.id"
+                :mini="true"
+                :id="p.id"
+                :date_posted="p.date_posted"
+                :price="p.price"
+                :address="p.address"
+                :bathrooms="p.bathrooms"
+                :bedrooms="p.bedrooms"
+                :floors="p.floors"
+                :type="p.type"
+                :tenure="p.tenure"
+                :description="p.description"
+            />
+        </div>
     </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
+import UserIcon from "@/components/icons/UserIcon.vue"
 import PropertyMini from "@/components/PropertyMini.vue"
 
+const user = {
+    name: 'Rando Real Estate',
+    email: 'sales@rando.com',
+    phone: '078957985',
+    address: '45 Red Lane Manchester M56 7JK',
+    about: `Pattinson Estate Agency is an award-winning family-run business that was Launched in 1977 on Independence Day. This is no coincidence, as independence is central to our company ethos. We are the most recognised estate agency in the North East, and in that time we have grown from 1 office to 28, with 300 members of staff, and we officially sell more properties in the North East, than any other estate agency.
+
+However, we don’t just sell houses! Our many property services include sales, lettings (property management), auction, commercial, financial services, conveyance and surveys, and we have it all under one roof! We can be contacted 6 days a week at extended hours, as we have a dedicated Regional Team who take the overspill calls from our 28 branches, so all client relationships are built and maintained.
+
+At Pattinsons, we are innovative leaders in the property industry, with pro-active selling, a reliable reputation, and substantial repeat business. Our national secure sale department, ‘Pattinson Auction’, was launched 33 years ago, and is going from strength to strength.
+
+As serious players in the field of digital marketing, we successfully utilise the social media platforms TikTok, Facebook and Instagram as part of our extensive marketing process. We have a wealth of knowledge and an expansive network to help find the best solution for you and your property requirements. You can trust Pattinsons, the North East’s leading estate agency.`
+}
 const properties = [
     {
         id: 21321,
@@ -163,11 +191,44 @@ const properties = [
         size: '210 x 460'
     }
 ]
-
 </script>
 
 <style lang="scss" scoped>
-.home-view {
-    gap: 2.5rem;
+.user-view {
+    gap: 2rem;
+
+    > div:first-of-type {
+        background-color: whitesmoke;
+        border-radius: 50%;
+        height: fit-content;
+        padding: 3rem;
+        width: fit-content;
+
+        svg {
+            fill: lightgray;
+            width: 3rem;
+        }
+    }
+
+    > div:nth-of-type(2) {
+        gap: 1.5rem;
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        .contact {
+            gap: 0.625rem;
+        }
+
+        p {
+            white-space: pre-wrap;
+        }
+    }
+
+    > div:nth-of-type(3) {
+        gap: 2.5rem;
+        margin-top: 2rem;
+    }
 }
 </style>
