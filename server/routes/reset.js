@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
         if (result.rows.length === 0) return res.status(400).send('There is no user with the email provided')
 
         await sendPasswordResetEmail(email, resetId)
-        res.status(200)
+        res.sendStatus(200)
     } catch (err) {
         res.status(500).send('Failed to communicate with the database')
     }
@@ -42,7 +42,7 @@ router.put('/:id', async (req, res) => {
         // If no user with the given reset id is found, return an error to the client
         if (result.rows.length === 0) return res.status(400).send('Your password reset link looks invalid')
 
-        res.status(200)
+        res.sendStatus(200)
     } catch (err) {
         res.status(500).send('Failed to communicate with the database')
     }

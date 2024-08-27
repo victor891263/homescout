@@ -3,30 +3,31 @@
   <component name="ChangeListManager">
     <list default="true" id="c5e65a09-b5bc-4e10-934a-ba00b0483e58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/android-chrome-192x192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/android-chrome-512x512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/android-chrome-maskable-192x192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/android-chrome-maskable-512x512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/apple-touch-icon-120x120.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/apple-touch-icon-152x152.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/apple-touch-icon-180x180.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/apple-touch-icon-60x60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/apple-touch-icon-76x76.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/apple-touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/favicon-16x16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/favicon-32x32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/msapplication-icon-144x144.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/mstile-150x150.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/img/icons/safari-pinned-tab.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AuthForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AuthForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/PropertyForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/PropertyForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/PropertyMini.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/PropertyMini.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/icons/ImageIcon.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/icons/ImageIcon.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AboutView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/AddPropertyView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/AddPropertyView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/EditProfileView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/EditProfileView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/EditPropertyView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/EditPropertyView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/LoginView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/PropertyView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/PropertyView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/RegisterView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/RegisterView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/UserView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/properties.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/properties.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/reset.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/reset.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/users.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +37,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
+        <option value="TypeScript File" />
         <option value="Vue Single File Component" />
       </list>
     </option>
@@ -78,7 +81,9 @@
       <workItem from="1724504433840" duration="7921000" />
       <workItem from="1724580738723" duration="14697000" />
       <workItem from="1724616334467" duration="2937000" />
-      <workItem from="1724669157659" duration="3735000" />
+      <workItem from="1724669157659" duration="23602000" />
+      <workItem from="1724750885618" duration="11060000" />
+      <workItem from="1724776299420" duration="6684000" />
     </task>
     <servers />
   </component>

@@ -1,31 +1,36 @@
 <template>
-    <AuthForm :isLogin="true" :onSubmit="login" />
-    <PopUp v-if="error" :msg="error" />
+    <div class="main">
+        <p v-if="error">{{ error }}</p>
+        <div v-else>Working...</div>
+    </div>
 </template>
 
 <script setup lang="ts">
-import AuthForm from "@/components/AuthForm.vue"
+import {useRoute} from "vue-router"
 import {ref} from "vue"
 import axios from "axios"
 import PopUp from "@/components/PopUp.vue"
 
 const error = ref('')
+const route = useRoute()
+const id = route.params.id
 
-async function login(email: string, password: string, event: any) {
-    event.target.disabled = true
+async function verify() {
     try {
-        const response = await axios.post(`${process.env.VUE_APP_API_URL}/auth`, {
-            email,
-            password
+        const response = await axios.get(`${process.env.VUE_APP_API_URL}/verify/${id}`, {
+            headers: {
+                Authorization: localStorage.getItem('jwt')
+            }
         })
         localStorage.setItem('jwt', response.data)
         window.location.href = `${window.location.origin}`
     } catch (err: any) {
-        event.target.disabled = false
         if (err.response) error.value = err.response.data
         else error.value = err.message
     }
 }
+
+verify()
 </script>
 
 <style scoped>

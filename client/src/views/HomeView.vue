@@ -1,169 +1,55 @@
 <template>
+    <div class="floating-button">
+        <RouterLink to="/new">Add property</RouterLink>
+    </div>
     <div class="home-view main">
-        <PropertyMini
-            v-for="p in properties"
-            :key="p.id"
-            :mini="true"
-            :id="p.id"
-            :date_posted="p.date_posted"
-            :price="p.price"
-            :address="p.address"
-            :bathrooms="p.bathrooms"
-            :bedrooms="p.bedrooms"
-            :floors="p.floors"
-            :type="p.type"
-            :tenure="p.tenure"
-            :description="p.description"
-        />
+        <template v-if="data">
+            <template v-if="data.length > 0">
+                <PropertyMini
+                    v-for="p in data"
+                    :key="p.id"
+                    :mini="true"
+                    :id="p.id"
+                    :date_posted="p.date_posted"
+                    :price="p.price"
+                    :address="p.address"
+                    :bathrooms="p.bathrooms"
+                    :bedrooms="p.bedrooms"
+                    :floors="p.floors"
+                    :type="p.type"
+                    :tenure="p.tenure"
+                    :description="p.description"
+                />
+            </template>
+            <div v-else>
+                <p>No relevant properties found</p>
+            </div>
+        </template>
+        <p v-else-if="error">{{ error }}</p>
+        <p v-else>Loading...</p>
     </div>
 </template>
 
 <script setup lang='ts'>
 import PropertyMini from "@/components/PropertyMini.vue"
+import {ref} from "vue"
+import {IPropertyMini} from "@/types"
+import axios from "axios"
 
-const properties = [
-    {
-        id: 21321,
-        date_posted: new Date().toString(),
-        price: 245000,
-        address: '12 Green Street, Birmingham B12 0EP',
-        bathrooms: 3,
-        bedrooms: 4,
-        floors: 2,
-        type: 'house',
-        tenure: 'leasehold',
-        date_modified: new Date().toString(),
-        description: `A delightful four-bedroom house located in a quiet, sought-after neighborhood. The property benefits from a spacious garden, a modern kitchen, and close proximity to local schools and amenities.`,
-        size: '250 x 600'
-    },
-    {
-        id: 867886,
-        date_posted: new Date().toString(),
-        price: 170000,
-        address: '45 Blue Road, Leeds LS1 3AB',
-        bathrooms: 1,
-        bedrooms: 2,
-        floors: 1,
-        type: 'flat',
-        tenure: 'freehold',
-        date_modified: new Date().toString(),
-        description: `An elegant two-bedroom flat located in the heart of Leeds. This flat boasts a modern interior with a spacious living area, ideal for first-time buyers or investors.`,
-        size: '180 x 400'
-    },
-    {
-        id: 56546,
-        date_posted: new Date().toString(),
-        price: 300000,
-        address: '89 Yellow Avenue, Bristol BS2 8PN',
-        bathrooms: 2,
-        bedrooms: 3,
-        floors: 3,
-        type: 'townhouse',
-        tenure: 'freehold',
-        date_modified: new Date().toString(),
-        description: `A beautiful three-story townhouse with a contemporary design, situated in a vibrant area of Bristol. Features include a private garage, garden, and proximity to the city center.`,
-        size: '300 x 650'
-    },
-    {
-        id: 8019247,
-        date_posted: new Date().toString(),
-        price: 210000,
-        address: '67 Violet Road, Manchester M4 1PQ',
-        bathrooms: 2,
-        bedrooms: 2,
-        floors: 1,
-        type: 'apartment',
-        tenure: 'leasehold',
-        date_modified: new Date().toString(),
-        description: `A stylish two-bedroom apartment with stunning views of Manchester's skyline. Located in a modern development with on-site gym and concierge service.`,
-        size: '220 x 480'
-    },
-    {
-        id: 934651,
-        date_posted: new Date().toString(),
-        price: 280000,
-        address: '23 Red Lane, Manchester M56 8JK',
-        bathrooms: 2,
-        bedrooms: 2,
-        floors: 2,
-        type: 'flat',
-        tenure: 'freehold',
-        date_modified: new Date().toString(),
-        description: `St Luke's Centre on Whalley Road, Whalley Range is a truly stunning building, now available for a limited time. We have been asked to market this property for a four-week period, and all offers must be submitted in writing FAO Danny / Eddie.`,
-        size: '233 x 500'
-    },
-    {
-        id: 12932,
-        date_posted: new Date().toString(),
-        price: 195000,
-        address: '34 White Crescent, Edinburgh EH1 1AN',
-        bathrooms: 1,
-        bedrooms: 3,
-        floors: 2,
-        type: 'cottage',
-        tenure: 'freehold',
-        date_modified: new Date().toString(),
-        description: `A charming three-bedroom cottage nestled in a picturesque area of Edinburgh. Features include a cozy living room with a fireplace, a spacious garden, and beautiful views.`,
-        size: '260 x 540'
-    },
-    {
-        id: 8721321,
-        date_posted: new Date().toString(),
-        price: 160000,
-        address: '99 Orange Street, Liverpool L1 0ER',
-        bathrooms: 1,
-        bedrooms: 1,
-        floors: 1,
-        type: 'studio',
-        tenure: 'leasehold',
-        date_modified: new Date().toString(),
-        description: `A modern studio apartment perfect for city living in Liverpool. Close to the waterfront, this property is ideal for young professionals or as an investment opportunity.`,
-        size: '150 x 350'
-    },
-    {
-        id: 200121,
-        date_posted: new Date().toString(),
-        price: 500000,
-        address: '58 Indigo Lane, London SW3 2BB',
-        bathrooms: 2,
-        bedrooms: 4,
-        floors: 3,
-        type: 'terraced house',
-        tenure: 'freehold',
-        date_modified: new Date().toString(),
-        description: `A luxurious four-bedroom terraced house located in the prestigious Chelsea area. The property features a large kitchen with modern appliances, a private garden, and high-end finishes throughout.`,
-        size: '400 x 700'
-    },
-    {
-        id: 1237899,
-        date_posted: new Date().toString(),
-        price: 270000,
-        address: '11 Black Lane, Cardiff CF10 1AA',
-        bathrooms: 2,
-        bedrooms: 3,
-        floors: 2,
-        type: 'semi-detached house',
-        tenure: 'freehold',
-        date_modified: new Date().toString(),
-        description: `A well-presented three-bedroom semi-detached house in a popular Cardiff suburb. This property offers a large driveway, a private garden, and is within walking distance of local amenities.`,
-        size: '275 x 550'
-    },
-    {
-        id: 45654,
-        date_posted: new Date().toString(),
-        price: 225000,
-        address: '78 Grey Avenue, Newcastle NE1 5BN',
-        bathrooms: 1,
-        bedrooms: 2,
-        floors: 1,
-        type: 'bungalow',
-        tenure: 'freehold',
-        date_modified: new Date().toString(),
-        description: `A delightful two-bedroom bungalow situated in a quiet residential area of Newcastle. The property benefits from a spacious garden, off-road parking, and easy access to local transport links.`,
-        size: '210 x 460'
+const data = ref<IPropertyMini[]>()
+const error = ref('')
+
+async function fetchData() {
+    try {
+        const response = await axios.get(`${process.env.VUE_APP_API_URL}/properties`)
+        data.value = response.data
+    } catch (err: any) {
+        if (err.response) error.value = err.response.data
+        else error.value = err.message
     }
-]
+}
 
+fetchData()
 </script>
 
 <style lang="scss" scoped>

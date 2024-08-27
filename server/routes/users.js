@@ -49,7 +49,7 @@ router.put('/', access, async (req, res) => {
         await client.query('UPDATE users SET name = $1, phone = $2, address = $3, about = $4 WHERE id = $5', [data.name, data.phone, data.address, data.about, user.id])
         client.release() // Release the client back to the pool
 
-        res.status(200)
+        res.sendStatus(200)
     } catch (err) {
         res.status(500).send('Failed to communicate with the database')
     }
@@ -64,7 +64,7 @@ router.delete('/', access, async (req, res) => {
         await client.query('DELETE FROM users WHERE id = $1', [user.id])
         client.release() // Release the client back to the pool
 
-        res.status(200)
+        res.sendStatus(200)
     } catch (err) {
         res.status(500).send('Failed to communicate with the database')
     }
@@ -76,10 +76,14 @@ router.get('/:id', async (req, res) => {
     try {
         // Get user from database
         const client = await pool.connect(undefined) // Get a client from the pool
-        const result = await client.query('SELECT name, phone, address, about FROM users WHERE id = $1', [id])
+        const user = await client.query('SELECT email, name, phone, address, about FROM users WHERE id = $1', [id])
+        const properties = await client.query('SELECT id, price, address, bathrooms, bedrooms, floors, type, tenure, description, image FROM properties WHERE marketer_id = $1', [id])
         client.release() // Release the client back to the pool
 
-        res.send(result.rows[0])
+        res.send({
+            user: user.rows[0],
+            properties: properties.rows
+        })
     } catch (err) {
         res.status(500).send('Failed to communicate with the database')
     }

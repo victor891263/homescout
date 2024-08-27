@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
 
     try {
         const client = await pool.connect(undefined) // Get a client from the pool
-        const result = await client.query('SELECT password, token FROM users WHERE email = $1', [user.email])
+        const result = await client.query('SELECT id, password, ver_id FROM users WHERE email = $1', [user.email])
         client.release() // Release the client back to the pool
 
         // Check if user with the given email exists in the database. If it doesn't, don't proceed
@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 
         // Create the json web token
         const token = jwt.sign({
-            id: user.id,
+            id: result.rows[0].id,
             verified: !result.rows[0].ver_id // If verification id still exists, that means the user is unverified
         }, process.env.JWT_SECRET)
 

@@ -11,9 +11,18 @@
                 <div>{{ tenure }}</div>
             </div>
             <div class="icons">
-                <div>🛀🏻 {{ bathrooms }}</div>
-                <div>🛌🏻 {{ bedrooms }}</div>
-                <div>🧱 {{ floors }}</div>
+                <div>
+                    <ShowerIcon />
+                    <div>{{ bathrooms }}</div>
+                </div>
+                <div>
+                    <BedIcon />
+                    <div>{{ bedrooms }}</div>
+                </div>
+                <div>
+                    <BrickIcon />
+                    <div>{{ floors }}</div>
+                </div>
             </div>
             <div class="address">{{ address }}</div>
             <p :class="mini ? `truncated-text` : `wrap`">{{ description }}</p>
@@ -25,6 +34,9 @@
 <script setup lang="ts">
 import ImageIcon from "@/components/icons/ImageIcon.vue"
 import {defineProps} from "vue"
+import ShowerIcon from "@/components/icons/ShowerIcon.vue";
+import BedIcon from "@/components/icons/BedIcon.vue";
+import BrickIcon from "@/components/icons/BrickIcon.vue";
 
 defineProps<{
     mini: boolean
@@ -56,6 +68,7 @@ a.property {
         align-items: center;
         aspect-ratio: 1/1;
         background-color: whitesmoke;
+        border-radius: 2rem;
         justify-content: center;
 
         svg {
@@ -65,11 +78,13 @@ a.property {
     }
 
     > div:last-of-type {
-        gap: 1.5rem;
+        gap: 1.25rem;
         padding-top: 1.75rem;
 
         h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
+            margin-bottom: -0.5rem;
+            margin-top: -0.5rem;
         }
 
         .tags {
@@ -77,9 +92,9 @@ a.property {
             gap: 0.375rem;
 
             div {
-                border: 1px solid black;
-                border-radius: 50rem;
-                padding: 0.25rem 0.875rem;
+                background-color: whitesmoke;
+                border-radius: 0.625rem;
+                padding: 0.5rem 0.75rem;
                 text-transform: capitalize;
                 width: fit-content;
             }
@@ -88,6 +103,17 @@ a.property {
         .icons {
             flex-direction: row;
             gap: 1rem;
+
+            > div {
+                align-items: center;
+                flex-direction: row;
+                gap: 0.5rem;
+
+                svg {
+                    fill: darkgray;
+                    width: 1rem;
+                }
+            }
         }
 
         .address {
