@@ -1,14 +1,17 @@
 <template>
     <nav>
         <div>
-            <RouterLink to="/">👋 Homescout</RouterLink>
-            <div v-if="currentUser">
-                <RouterLink to="/profile">Profile</RouterLink>
-                <button @click="logout()">Logout</button>
-            </div>
-            <div v-else>
-                <RouterLink to="/login">Login</RouterLink>
-                <RouterLink to="/register">Register</RouterLink>
+            <RouterLink to="/">£</RouterLink>
+            <div>
+                <RouterLink to="/predict">Predict</RouterLink>
+                <template v-if="currentUser">
+                    <RouterLink to="/profile">Profile</RouterLink>
+                    <button @click="logout()">Logout</button>
+                </template>
+                <template v-else>
+                    <RouterLink to="/login">Login</RouterLink>
+                    <RouterLink to="/register">Register</RouterLink>
+                </template>
             </div>
         </div>
     </nav>

@@ -5,7 +5,7 @@
         </div>
         <div>
             <div v-if="!mini" class="date">Listed 3d ago</div>
-            <h2>${{ price }}</h2>
+            <h2>£{{ price }}</h2>
             <div class="tags">
                 <div>{{ type }}</div>
                 <div>{{ tenure }}</div>

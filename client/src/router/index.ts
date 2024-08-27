@@ -9,6 +9,7 @@ import RegisterView from '../views/RegisterView.vue'
 import AddPropertyView from '../views/AddPropertyView.vue'
 import EditPropertyView from '../views/EditPropertyView.vue'
 import EditProfileView from '../views/EditProfileView.vue'
+import PredictView from '../views/PredictView.vue'
 import getCurrentUser from "@/util/getCurrentUser"
 
 const currentUser = getCurrentUser()
@@ -51,6 +52,11 @@ const unauthorized: Array<RouteRecordRaw> = [
         path: '/register',
         name: 'register',
         component: RegisterView
+    },
+    {
+        path: '/predict',
+        name: 'predict',
+        component: PredictView
     }
 ]
 
@@ -89,6 +95,11 @@ const verified: Array<RouteRecordRaw> = [
         path: '/profile/edit',
         name: 'edit-profile',
         component: EditProfileView
+    },
+    {
+        path: '/predict',
+        name: 'predict',
+        component: PredictView
     }
 ]
 

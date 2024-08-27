@@ -1,41 +1,34 @@
 <template>
-    <div class="property-form main">
-        <h1>{{ id ? `Edit property` : `Add property` }}</h1>
-        <div>
-            <label for="price">Price</label>
-            <input v-model="price" type="number" name="price" id="price" />
-        </div>
+    <PopUp v-if="error" :msg="error" />
+    <div class="main predict-view">
+        <h1>Predict price</h1>
         <div>
             <label for="address">Address</label>
-            <input v-model="address" type="text" name="address" id="address" :disabled="id" />
+            <input v-model="address" type="text" name="address" id="address" />
         </div>
         <div>
             <label for="bathrooms">Bathrooms</label>
-            <input v-model="bathrooms" type="number" name="bathrooms" id="bathrooms" :disabled="id" />
+            <input v-model="bathrooms" type="number" name="bathrooms" id="bathrooms" />
         </div>
         <div>
             <label for="bedrooms">Bedrooms</label>
-            <input v-model="bedrooms" type="number" name="bedrooms" id="bedrooms" :disabled="id" />
+            <input v-model="bedrooms" type="number" name="bedrooms" id="bedrooms" />
         </div>
         <div>
             <label for="floors">Floors</label>
-            <input v-model="floors" type="number" name="floors" id="floors" :disabled="id" />
-        </div>
-        <div>
-            <label for="size">Size</label>
-            <input v-model="size" type="text" name="size" id="size" :disabled="id" />
+            <input v-model="floors" type="number" name="floors" id="floors" />
         </div>
         <div>
             <label for="tenure">Tenure</label>
             <select v-model="tenure" name="tenure" id="tenure">
                 <option value="freehold">Freehold</option>
                 <option value="leasehold">Leasehold</option>
-                <option value="share of freehold">Share of freehold</option>
+                <option value="share_of_freehold">Share of freehold</option>
             </select>
         </div>
         <div>
             <label for="type">Property type</label>
-            <select v-model="type" name="type" id="type" :disabled="id" >
+            <select v-model="type" name="type" id="type" >
                 <option value="terraced house">Terraced house</option>
                 <option value="flat">Flat</option>
                 <option value="land">Land</option>
@@ -57,82 +50,67 @@
                 <option value="mews house">Mews house</option>
             </select  >
         </div>
-        <div>
-            <label for="description">Description</label>
-            <textarea v-model="description" name="description" id="description" />
+        <button @click="submit($event)" class="black">Submit</button>
+        <div v-if="predPrice" class="pred-container">
+            <h2>£{{ predPrice }}</h2>
+            <p>This is the highest possible price you can expect your property to be sold for.</p>
         </div>
-        <button @click="onSubmit(
-            price,
-            address,
-            bathrooms,
-            bedrooms,
-            floors,
-            type,
-            tenure,
-            description,
-            size,
-            $event
-        )" class="black">Submit</button>
     </div>
 </template>
 
 <script setup lang="ts">
 import {ref} from "vue"
-import {defineProps} from "vue"
 import {TPropertyType, TTenure} from "@/types"
 import axios from "axios"
+import PopUp from "@/components/PopUp.vue"
 
-const price = ref(0)
 const address = ref('')
 const bathrooms = ref(0)
 const bedrooms = ref(0)
 const floors = ref(0)
-const size = ref('')
 const tenure = ref<TTenure>('freehold')
 const type = ref<TPropertyType>('terraced house')
-const description = ref('')
 
 const error = ref('')
+const predPrice = ref()
 
-const props = defineProps<{
-    id?: number
-    onSubmit: (
-        price: number,
-        address: string,
-        bathrooms: number,
-        bedrooms: number,
-        floors: number,
-        type: TPropertyType,
-        tenure: TTenure,
-        description: string,
-        size: string,
-        event: any
-    ) => void
-}>()
-
-async function fetchData(id: number) {
+async function submit(event: any) {
+    event.target.disabled = true
     try {
-        const response = await axios.get(`${process.env.VUE_APP_API_URL}/properties/${id}`)
-        price.value = response.data.price
-        address.value = response.data.address
-        bathrooms.value = response.data.bathrooms
-        bedrooms.value = response.data.bedrooms
-        floors.value = response.data.floors
-        size.value = response.data.size
-        type.value = response.data.type
-        tenure.value = response.data.tenure
-        description.value = response.data.description
+        const responseWithCords = await axios.get(`https://api.opencagedata.com/geocode/v1/json`, {
+            params: {
+                q: address.value,
+                key: process.env.VUE_APP_OPENCAGEDATA_URL,
+                countrycode: 'gb',
+                limit: 1
+            }
+        })
+
+        const result = responseWithCords.data.results[0]
+        const latitude = result.geometry.lat
+        const longitude = result.geometry.lng
+
+        const response = await axios.post(process.env.VUE_APP_MODEL_URL, {
+            latitude,
+            longitude,
+            num_bathrooms: bathrooms.value,
+            num_bedrooms: bedrooms.value,
+            num_floors: floors.value,
+            property_type: type.value,
+            tenure: tenure.value
+        })
+        predPrice.value = response.data
     } catch (err: any) {
         if (err.response) error.value = err.response.data
         else error.value = err.message
+    } finally {
+        event.target.disabled = false
     }
 }
-
-if (props.id) fetchData(props.id)
 </script>
 
 <style lang="scss" scoped>
-.property-form {
+.predict-view {
     gap: 1.25rem;
     max-width: 420px !important;
 
@@ -146,23 +124,28 @@ if (props.id) fetchData(props.id)
     }
 
     input,
-    select,
-    textarea {
+    select {
         border: 1px solid lightgray;
         border-radius: 0.5rem;
         padding: 0.5rem 0.75rem;
-    }
-
-    textarea {
-        border-radius: 0.75rem;
-        height: 8rem;
-        line-height: 1.5;
     }
 
     button {
         border-radius: 0.5rem;
         margin-top: 0.5rem;
         padding: 0.625rem;
+    }
+
+    .pred-container {
+        background-color: whitesmoke;
+        border-radius: 0.75rem;
+        margin-top: 2rem;
+        padding: 1rem 1.5rem 1.5rem 1.5rem;
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
     }
 }
 </style>
