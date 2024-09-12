@@ -83,20 +83,19 @@ fetchData()
 
     .marketer {
         align-items: center;
-        color: initial;
         flex-direction: row;
         gap: 1.5rem;
         text-decoration: initial;
         width: fit-content;
 
         > div:first-of-type {
-            background-color: whitesmoke;
+            background-color: var(--color-2);
             border-radius: 50%;
             padding: 1.75rem;
             width: fit-content;
 
             svg {
-                fill: lightgray;
+                fill: var(--color-3-5);
                 width: 1.75rem;
             }
         }
@@ -110,7 +109,7 @@ fetchData()
                 gap: 0.5rem;
 
                 svg {
-                    fill: darkgray;
+                    fill: var(--color-4);
                     width: 1rem;
                 }
             }

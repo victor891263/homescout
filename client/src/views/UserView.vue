@@ -93,14 +93,14 @@ fetchData()
     gap: 2rem;
 
     > div:first-of-type {
-        background-color: whitesmoke;
+        background-color: var(--color-2);
         border-radius: 50%;
         height: fit-content;
         padding: 3rem;
         width: fit-content;
 
         svg {
-            fill: lightgray;
+            fill: var(--color-3-5);
             width: 3rem;
         }
     }
@@ -123,7 +123,7 @@ fetchData()
                 gap: 0.5rem;
 
                 svg {
-                    fill: darkgray;
+                    fill: var(--color-4);
                     width: 1rem;
                 }
             }

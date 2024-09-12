@@ -125,7 +125,7 @@ async function submit(event: any) {
 
     input,
     select {
-        border: 1px solid lightgray;
+        border: 1px solid var(--color-3);
         border-radius: 0.5rem;
         padding: 0.5rem 0.75rem;
     }
@@ -137,7 +137,7 @@ async function submit(event: any) {
     }
 
     .pred-container {
-        background-color: whitesmoke;
+        background-color: var(--color-2);
         border-radius: 0.75rem;
         margin-top: 2rem;
         padding: 1rem 1.5rem 1.5rem 1.5rem;

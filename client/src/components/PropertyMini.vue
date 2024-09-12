@@ -55,7 +55,6 @@ defineProps<{
 
 <style lang="scss" scoped>
 a.property {
-    color: initial;
     text-decoration: initial;
 }
 
@@ -67,12 +66,12 @@ a.property {
     > div:first-of-type {
         align-items: center;
         aspect-ratio: 1/1;
-        background-color: whitesmoke;
+        background-color: var(--color-2);
         border-radius: 2rem;
         justify-content: center;
 
         svg {
-            fill: lightgray;
+            fill: var(--color-3-5);
             width: 5rem;
         }
     }
@@ -92,7 +91,7 @@ a.property {
             gap: 0.375rem;
 
             div {
-                background-color: whitesmoke;
+                background-color: var(--color-2);
                 border-radius: 0.625rem;
                 padding: 0.5rem 0.75rem;
                 text-transform: capitalize;
@@ -110,7 +109,7 @@ a.property {
                 gap: 0.5rem;
 
                 svg {
-                    fill: darkgray;
+                    fill: var(--color-4);
                     width: 1rem;
                 }
             }
@@ -121,7 +120,7 @@ a.property {
         }
 
         .date {
-            color: darkgray;
+            color: var(--color-4);
         }
     }
 }

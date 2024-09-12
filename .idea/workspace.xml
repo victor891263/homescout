@@ -3,13 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="c5e65a09-b5bc-4e10-934a-ba00b0483e58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/AuthForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AuthForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/PopUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/PopUp.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/PropertyForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/PropertyForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/PropertyMini.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/PropertyMini.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/views/EditProfileView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/EditProfileView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservice/.idea/microservice.iml" beforeDir="false" afterPath="$PROJECT_DIR$/microservice/.idea/microservice.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/PredictView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/PredictView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/PropertyView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/PropertyView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/UserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/UserView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +69,10 @@
       <workItem from="1724616334467" duration="2937000" />
       <workItem from="1724669157659" duration="23602000" />
       <workItem from="1724750885618" duration="11060000" />
-      <workItem from="1724776299420" duration="10261000" />
+      <workItem from="1724776299420" duration="11242000" />
+      <workItem from="1726081967795" duration="1697000" />
+      <workItem from="1726094720065" duration="4000" />
+      <workItem from="1726126270032" duration="6285000" />
     </task>
     <servers />
   </component>

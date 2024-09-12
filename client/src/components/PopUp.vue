@@ -19,7 +19,7 @@ setTimeout(() => visible.value = false, 5000)
     align-items: center;
     background-color: red;
     bottom: 0;
-    color: white;
+    color: var(--color-1);
     left: 0;
     padding: 0.625rem 0.875rem;
     position: fixed;

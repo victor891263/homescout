@@ -1,36 +1,16 @@
 <template>
-    <nav>
-        <div>
-            <RouterLink to="/">£</RouterLink>
-            <div>
-                <RouterLink to="/predict">Predict</RouterLink>
-                <template v-if="currentUser">
-                    <RouterLink to="/profile">Profile</RouterLink>
-                    <button @click="logout()">Logout</button>
-                </template>
-                <template v-else>
-                    <RouterLink to="/login">Login</RouterLink>
-                    <RouterLink to="/register">Register</RouterLink>
-                </template>
-            </div>
-        </div>
-    </nav>
+    <NavBar />
     <router-view/>
 </template>
 
 <script setup lang="ts">
-import getCurrentUser from "@/util/getCurrentUser"
-
-const currentUser = getCurrentUser()
-
-function logout() {
-    localStorage.removeItem('jwt')
-    window.location.href = `${window.location.origin}`
-}
+import NavBar from "@/components/NavBar.vue"
 </script>
 
 <style lang="scss">
 #app {
+    color: var(--color-5);
+
     h1,
     h2 {
         font-family: 'DM Serif Text', serif;
@@ -42,19 +22,6 @@ function logout() {
         line-height: 1.5;
     }
 
-    a {
-        color: initial;
-        cursor: pointer;
-    }
-
-    input,
-    select,
-    textarea,
-    button {
-        font-size: 1rem;
-        outline: none;
-    }
-
     textarea {
         resize: vertical;
     }
@@ -62,13 +29,12 @@ function logout() {
     input:disabled,
     select:disabled,
     textarea:disabled {
-        background-color: whitesmoke;
+        background-color: var(--color-2);
         cursor: not-allowed;
     }
 
     button {
         align-items: center;
-        cursor: pointer;
         font-weight: bold;
 
         &:disabled {
@@ -77,9 +43,8 @@ function logout() {
         }
 
         &.black {
-            background-color: black;
-            border: none;
-            color: white;
+            background-color: var(--color-5);
+            color: var(--color-1);
 
             &:hover:not(:disabled) {
                 background-color: rgb(50, 50, 50);
@@ -87,11 +52,10 @@ function logout() {
         }
 
         &.outline {
-            background: none;
-            border: 1px solid lightgray;
+            border: 1px solid var(--color-3);
 
             &:hover:not(:disabled) {
-                background-color: whitesmoke;
+                background-color: var(--color-2);
             }
         }
     }
@@ -104,10 +68,9 @@ function logout() {
         right: 0;
 
         a {
-            background-color: black;
+            background-color: var(--color-5);
             border-radius: 0.5rem;
-            box-shadow: 0 2px 10px 0 gray;
-            color: white !important;
+            color: var(--color-1) !important;
             font-weight: bold;
             padding: 0.625rem 0.875rem;
             text-decoration: none;
@@ -128,43 +91,6 @@ function logout() {
         margin-right: auto;
         padding: 10rem 0;
         width: 100%;
-    }
-
-    nav {
-        align-items: center;
-        left: 0;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        position: fixed;
-        right: 0;
-        top: 1.5rem;
-
-        a {
-            color: initial;
-            text-decoration: none;
-        }
-
-        > div {
-            background-color: white;
-            border-radius: 1rem;
-            box-shadow: 0 2px 10px 0 lightgray;
-            flex-direction: row;
-            justify-content: space-between;
-            max-width: 768px;
-            padding: 1.25rem;
-            width: 100%;
-
-            > div {
-                flex-direction: row;
-                gap: 1.25rem;
-            }
-        }
-
-        button {
-            background: none;
-            border: none;
-            font-weight: normal;
-        }
     }
 }
 

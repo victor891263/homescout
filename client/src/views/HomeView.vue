@@ -1,5 +1,5 @@
 <template>
-    <div class="floating-button">
+    <div v-if="currentUser" class="floating-button">
         <RouterLink to="/new">Add property</RouterLink>
     </div>
     <div class="home-view main">
@@ -35,7 +35,9 @@ import PropertyMini from "@/components/PropertyMini.vue"
 import {ref} from "vue"
 import {IPropertyMini} from "@/types"
 import axios from "axios"
+import getCurrentUser from "@/util/getCurrentUser"
 
+const currentUser = getCurrentUser()
 const data = ref<IPropertyMini[]>()
 const error = ref('')
 
