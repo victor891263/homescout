@@ -47,7 +47,7 @@ async function fetchData() {
         address.value = response.data.user.address
         about.value = response.data.user.about
     } catch (err: any) {
-        if (err.response) error.value = err.response.data
+        if (err.response && err.response.data) error.value = err.response.data
         else error.value = err.message
     }
 }
@@ -68,7 +68,7 @@ async function submit(event: any) {
         await router.push('/profile')
     } catch (err: any) {
         event.target.disabled = false
-        if (err.response) error.value = err.response.data
+        if (err.response && err.response.data) error.value = err.response.data
         else error.value = err.message
     }
 }

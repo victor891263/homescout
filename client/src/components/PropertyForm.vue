@@ -123,7 +123,7 @@ async function fetchData(id: number) {
         tenure.value = response.data.tenure
         description.value = response.data.description
     } catch (err: any) {
-        if (err.response) error.value = err.response.data
+        if (err.response && err.response.data) error.value = err.response.data
         else error.value = err.message
     }
 }

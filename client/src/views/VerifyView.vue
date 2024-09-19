@@ -25,7 +25,7 @@ async function verify() {
         localStorage.setItem('jwt', response.data)
         window.location.href = `${window.location.origin}`
     } catch (err: any) {
-        if (err.response) error.value = err.response.data
+        if (err.response && err.response.data) error.value = err.response.data
         else error.value = err.message
     }
 }

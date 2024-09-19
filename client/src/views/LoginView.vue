@@ -22,7 +22,7 @@ async function login(email: string, password: string, event: any) {
         window.location.href = `${window.location.origin}`
     } catch (err: any) {
         event.target.disabled = false
-        if (err.response) error.value = err.response.data
+        if (err.response && err.response.data) error.value = err.response.data
         else error.value = err.message
     }
 }

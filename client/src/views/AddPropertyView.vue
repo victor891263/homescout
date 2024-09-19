@@ -46,7 +46,7 @@ async function submit(
         await router.push(`/properties/${response.data}`)
     } catch (err: any) {
         event.target.disabled = false
-        if (err.response) error.value = err.response.data
+        if (err.response && err.response.data) error.value = err.response.data
         else error.value = err.message
     }
 }

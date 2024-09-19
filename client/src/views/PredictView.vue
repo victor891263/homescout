@@ -101,7 +101,7 @@ async function submit(event: any) {
         })
         predPrice.value = response.data
     } catch (err: any) {
-        if (err.response) error.value = err.response.data
+        if (err.response && err.response.data) error.value = err.response.data
         else error.value = err.message
     } finally {
         event.target.disabled = false
