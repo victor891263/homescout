@@ -61,10 +61,10 @@ def predict():
         return str(e), 500
 
 
-@app.route('/', methods=['GET'])
-def train():
+@app.route('/train', methods=['POST'])
+def train_model():
     secret = request.args.get('secret')
-    
+
     if (secret == os.getenv("SECRET")):
         try:
             # Retrieve data from database
