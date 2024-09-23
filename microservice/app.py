@@ -63,54 +63,59 @@ def predict():
 
 @app.route('/', methods=['GET'])
 def train():
-    try:
-        # Retrieve data from database
+    secret = request.args.get('secret')
+    
+    if (secret == os.getenv("SECRET")):
+        try:
+            # Retrieve data from database
 
-        DB_URL = os.getenv("DB_URL")
-        conn = psycopg2.connect(DB_URL)
+            DB_URL = os.getenv("DB_URL")
+            conn = psycopg2.connect(DB_URL)
 
-        query = "SELECT price, address, bathrooms, bedrooms, floors, type, tenure FROM properties"
-        df_db = pd.read_sql(query, conn)
+            query = "SELECT price, address, bathrooms, bedrooms, floors, type, tenure FROM properties"
+            df_db = pd.read_sql(query, conn)
 
-        conn.close()
+            conn.close()
 
-        # Create latitude and longitudes and rename columns
+            # Create latitude and longitudes and rename columns
 
-        df_db['latitude'], df_db['longitude'] = zip(*df_db['address'].apply(get_lat_long))
-        df_db = df_db.drop('address', axis=1)
-        df_db = df_db.rename(columns={'bathrooms': 'num_bathrooms', 'bedrooms': 'num_bedrooms', 'floors': 'num_floors',
-                                      'type': 'property_type'})
+            df_db['latitude'], df_db['longitude'] = zip(*df_db['address'].apply(get_lat_long))
+            df_db = df_db.drop('address', axis=1)
+            df_db = df_db.rename(columns={'bathrooms': 'num_bathrooms', 'bedrooms': 'num_bedrooms', 'floors': 'num_floors',
+                                          'type': 'property_type'})
 
-        # Load the data from local csv
+            # Load the data from local csv
 
-        df_local = pd.read_csv('data.csv')
+            df_local = pd.read_csv('data.csv')
 
-        # Combine two dataframes
+            # Combine two dataframes
 
-        df = pd.concat([df_db, df_local], ignore_index=True)
+            df = pd.concat([df_db, df_local], ignore_index=True)
 
-        # Train the model
+            # Train the model
 
-        df = pd.get_dummies(df, columns=['property_type'], prefix='property_type')
-        df = df.replace({True: 1, False: 0})
+            df = pd.get_dummies(df, columns=['property_type'], prefix='property_type')
+            df = df.replace({True: 1, False: 0})
 
-        df = pd.get_dummies(df, columns=['tenure'], prefix='tenure')
-        df = df.replace({True: 1, False: 0})
+            df = pd.get_dummies(df, columns=['tenure'], prefix='tenure')
+            df = df.replace({True: 1, False: 0})
 
-        x = df.drop(['price'], axis=1)
-        y = df['price']
+            x = df.drop(['price'], axis=1)
+            y = df['price']
 
-        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+            x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 
-        model = RandomForestRegressor()
-        model.fit(x_train, y_train)
+            model = RandomForestRegressor()
+            model.fit(x_train, y_train)
 
-        # Save the model, which replaces the old pkl with the new one
+            # Save the model, which replaces the old pkl with the new one
 
-        joblib.dump(model, 'model.pkl')
+            joblib.dump(model, 'model.pkl')
 
-        return 'New model successfully trained!'
+            return 'New model successfully trained!'
 
-    except Exception as e:
-        print(e)
-        return str(e), 500
+        except Exception as e:
+            print(e)
+            return str(e), 500
+    else:
+        return "You don't have permission to do this", 500

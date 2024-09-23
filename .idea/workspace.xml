@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5e65a09-b5bc-4e10-934a-ba00b0483e58" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/PropertyForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/PropertyForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/PredictView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/PredictView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservice/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/microservice/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/microservice/model.pkl" beforeDir="false" />
-    </list>
+    <list default="true" id="c5e65a09-b5bc-4e10-934a-ba00b0483e58" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,7 +66,7 @@
       <workItem from="1726094720065" duration="4000" />
       <workItem from="1726126270032" duration="6574000" />
       <workItem from="1726741146117" duration="2730000" />
-      <workItem from="1727097585059" duration="9778000" />
+      <workItem from="1727097585059" duration="10201000" />
     </task>
     <servers />
   </component>
