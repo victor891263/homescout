@@ -26,13 +26,19 @@
 
 <script setup lang="ts">
 import getCurrentUser from "@/util/getCurrentUser"
-import {ref} from "vue"
+import {ref, watch} from "vue"
 import XIcon from "@/components/icons/XIcon.vue"
 import MenuIcon from "@/components/icons/MenuIcon.vue"
 import ThemeButton from "@/components/ThemeButton.vue"
+import {useRoute} from "vue-router"
 
+const route = useRoute()
 const currentUser = getCurrentUser()
 const isActive = ref(false)
+
+watch(route, (value, oldValue, onCleanup) => {
+    isActive.value = false
+})
 
 function logout() {
     localStorage.removeItem('jwt')
@@ -57,16 +63,16 @@ nav {
     > div {
         background-color: var(--color-1);
         border: 1px solid var(--color-3);
-        border-radius: 0.875rem;
-        height: 54px;
+        border-radius: 0.75rem;
+        height: 50px;
         overflow: hidden;
-        padding: 1rem;
+        padding: 0.875rem;
         transition: height 0.3s;
 
         > div:nth-of-type(1) {
             align-items: center;
             flex-direction: row;
-            gap: 1rem;
+            gap: 0.75rem;
 
             svg {
                 fill: var(--color-5);
@@ -78,12 +84,12 @@ nav {
         > div:nth-of-type(2) {
             border-top: 1px solid var(--color-3);
             gap: 0.75rem;
-            margin-top: 1rem;
-            padding-top: 1rem;
+            margin-top: 0.875rem;
+            padding-top: 0.875rem;
         }
 
         &.active {
-            height: 169px;
+            height: 160px;
         }
     }
 

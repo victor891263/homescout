@@ -77,18 +77,15 @@ const predPrice = ref()
 async function submit(event: any) {
     event.target.disabled = true
     try {
-        const responseWithCords = await axios.get(`https://api.opencagedata.com/geocode/v1/json`, {
-            params: {
-                q: address.value,
-                key: process.env.VUE_APP_OPENCAGEDATA_URL,
-                countrycode: 'gb',
-                limit: 1
-            }
-        })
+        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address.value)}`
 
-        const result = responseWithCords.data.results[0]
-        const latitude = result.geometry.lat
-        const longitude = result.geometry.lng
+        const responseWithCords = await axios.get(url)
+        const data = responseWithCords.data
+
+        if (data.length == 0) throw new Error('Location not found')
+
+        const latitude = data[0].lat
+        const longitude = data[0].lon
 
         const response = await axios.post(process.env.VUE_APP_MODEL_URL, {
             latitude,
@@ -120,14 +117,14 @@ async function submit(event: any) {
 
     label {
         font-weight: 600;
-        margin-bottom: 0.375rem;
+        margin-bottom: 0.5rem;
     }
 
     input,
     select {
         border: 1px solid var(--color-3);
-        border-radius: 0.5rem;
-        padding: 0.5rem 0.75rem;
+        border-radius: 0.625rem;
+        padding: 0.625rem 0.75rem;
     }
 
     button {

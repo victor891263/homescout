@@ -142,15 +142,15 @@ if (props.id) fetchData(props.id)
 
     label {
         font-weight: 600;
-        margin-bottom: 0.375rem;
+        margin-bottom: 0.5rem;
     }
 
     input,
     select,
     textarea {
         border: 1px solid var(--color-3);
-        border-radius: 0.5rem;
-        padding: 0.5rem 0.75rem;
+        border-radius: 0.625rem;
+        padding: 0.625rem 0.75rem;
     }
 
     textarea {

@@ -45,18 +45,10 @@ import NavBar from "@/components/NavBar.vue"
         &.black {
             background-color: var(--color-5);
             color: var(--color-1);
-
-            &:hover:not(:disabled) {
-                background-color: rgb(50, 50, 50);
-            }
         }
 
         &.outline {
             border: 1px solid var(--color-3);
-
-            &:hover:not(:disabled) {
-                background-color: var(--color-2);
-            }
         }
     }
 
