@@ -55,6 +55,9 @@ import NavBar from "@/components/NavBar.vue"
     .floating-button {
         align-items: center;
         bottom: 1.5rem;
+        flex-direction: row;
+        gap: 0.5rem;
+        justify-content: center;
         left: 0;
         position: fixed;
         right: 0;

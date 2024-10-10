@@ -33,6 +33,7 @@
             </RouterLink>
             <div class="floating-button">
                 <RouterLink v-if="currentUser && (currentUser.id === data.marketer_id.toString())" :to="`${route.path}/edit`">Edit property</RouterLink>
+                <button @click="deleteProperty()" class="black del-button">Delete</button>
             </div>
         </template>
         <p v-else-if="error">{{ error }}</p>
@@ -43,7 +44,7 @@
 <script setup lang="ts">
 import PropertyMini from "@/components/PropertyMini.vue"
 import UserIcon from "@/components/icons/UserIcon.vue"
-import {useRoute} from "vue-router"
+import {useRoute, useRouter} from "vue-router"
 import {ref} from "vue"
 import {IProperty} from "@/types"
 import axios from "axios"
@@ -53,6 +54,7 @@ import PhoneIcon from "@/components/icons/PhoneIcon.vue";
 
 const currentUser = getCurrentUser()
 const route = useRoute()
+const router = useRouter()
 const id = route.params.id
 
 const data = ref<IProperty>()
@@ -68,12 +70,32 @@ async function fetchData() {
     }
 }
 
+async function deleteProperty() {
+    try {
+        await axios.delete(`${process.env.VUE_APP_API_URL}/properties/${id}`, {
+            headers: {
+                Authorization: localStorage.getItem('jwt')
+            }
+        })
+        await router.push(`/`)
+    } catch (err: any) {
+        if (err.response && err.response.data) error.value = err.response.data
+        else error.value = err.message
+    }
+}
+
 fetchData()
 </script>
 
 <style lang="scss" scoped>
 .property-view {
     gap: 2rem;
+
+    .del-button {
+        border-radius: 0.5rem;
+        font-weight: bold;
+        padding: 0.625rem 0.875rem;
+    }
 
     .contact {
         align-items: center;

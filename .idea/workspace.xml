@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c5e65a09-b5bc-4e10-934a-ba00b0483e58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/PropertyView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/PropertyView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +71,11 @@
       <workItem from="1726126270032" duration="6574000" />
       <workItem from="1726741146117" duration="2730000" />
       <workItem from="1727097585059" duration="11445000" />
+      <workItem from="1727126634017" duration="871000" />
+      <workItem from="1727980130632" duration="2298000" />
+      <workItem from="1728245051307" duration="1785000" />
+      <workItem from="1728421301577" duration="736000" />
+      <workItem from="1728549781323" duration="679000" />
     </task>
     <servers />
   </component>
